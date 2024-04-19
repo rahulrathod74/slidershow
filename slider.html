@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="cont"></div>
+    <button onclick="next()">next</button>
+    <button onclick="prev()">prev</button>
+    <button onclick="start()">start</button>
+
+    <script>
+      let srcArr = [
+        "https://images.pexels.com/photos/298246/pexels-photo-298246.jpeg?cs=srgb&dl=pexels-leigh-patrick-298246.jpg&fm=jpg",
+        "https://thumbs.dreamstime.com/b/sunflower-fields-sunset-beautiful-composite-sunrise-over-field-golden-yellow-sunflowers-101549985.jpg",
+        "https://i0.wp.com/picjumbo.com/wp-content/uploads/romantic-tropical-beach-with-villa-and-palms-during-beautiful-sunset-free-photo.jpg?w=600&quality=80",
+        "https://i0.wp.com/picjumbo.com/wp-content/uploads/pure-nature-landscape-single-tree-in-green-field-free-photo.jpg?w=600&quality=80",
+      ];
+
+      let i;
+      let cont = document.getElementById("cont");
+      let img = document.createElement("img");
+      img.style.width = "360px";
+      cont.append(img);
+
+      function displayImg(index) {
+        img.src = srcArr[index];
+      }
+
+      function next() {
+        if (i === undefined) {
+          i = 0;
+        } else {
+          i += 1;
+        }
+
+        if (i === srcArr.length) i = 0;
+
+        console.log("plus", i);
+        displayImg(i);
+        i++;
+      }
+
+      function prev() {
+        i -= 1;
+        if (i === 0) {
+          i = srcArr.length - 1;
+        } else {
+           i -= 1
+        }
+
+        displayImg(i)
+        // console.log("minus",i)
+      }
+
+      function start() {
+        setInterval(() => {
+          displayImg(i);
+          i++;
+          if (i == srcArr.length) {
+            i = 0;
+          }
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
